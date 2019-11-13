@@ -1,14 +1,19 @@
-const express = require('express');
+const express = require("express");
 const app = express();
+const { config } = require("./config");
+const platziStore = require("./routes");
+const authApi = require("./routes/auth");
 
-const { config } = require('./config');
-const platziStore = require('./routes')
-
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   let userInfo = req.header("user-agent");
   res.send(`UserInfo: ${userInfo}`);
 });
 
+//middelware de BODYPARSER
+app.use(express.json());
+
+//routes
+authApi(app);
 platziStore(app);
 
 app.listen(config.port, err => {

@@ -1,9 +1,9 @@
-const MongoConnect = require('../lib/mongo');
+const MongoConnect = require("../lib/mongo");
 
 class ProductService {
   constructor() {
-    this.mongodb = new MongoConnect()
-    this.collection = 'products'
+    this.mongodb = new MongoConnect();
+    this.collection = "products";
   }
 
   async getProducts() {
@@ -26,8 +26,8 @@ class ProductService {
 
   async updateProductById({ id, ...data }) {
     try {
-      const id = await this.mongodb.update(this.collection, id, data);
-      return id;
+      const idUpdate = await this.mongodb.update(this.collection, id, data);
+      return idUpdate;
     } catch (error) {
       throw new Error(error);
     }
@@ -35,8 +35,8 @@ class ProductService {
 
   async deleteProductById(id) {
     try {
-      const id = await this.mongodb.delete(this.collection, id);
-      return id;
+      const idDelete = await this.mongodb.delete(this.collection, id);
+      return idDelete;
     } catch (error) {
       throw new Error(error);
     }
